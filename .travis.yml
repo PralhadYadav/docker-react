@@ -10,3 +10,16 @@ before_install:
 
 script:
   - docker run react-docker npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2" # can be dynamic comes from aws
+  app: "react-docker" # can be dynamic comes from aws
+  env: "recat-docker-env" # can be dynamic comes from aws
+  bucket_name: "test" # can be dynamic comes from aws
+  backet_path : "test" # can be dynamic comes from aws
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY # can be dynamic comes from aws
+  secret_access_key: $AWS_SECRET_KEY # can be dynamic comes from aws
+  
